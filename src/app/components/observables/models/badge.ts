@@ -1,7 +1,7 @@
 export class Badge {
     constructor (
         private _id: number,
-        private _nom: string
+        private _name: string
     ) {}
 
     get id(): number {
@@ -12,11 +12,11 @@ export class Badge {
         this._id = value;
     }
 
-    get nom(): string {
-        return this._nom;
+    get name(): string {
+        return this._name;
     }
 
-    set nom(value: string) {
-        this._nom = value;
+    set name(value: string) {
+        this._name = value;
     }
 }

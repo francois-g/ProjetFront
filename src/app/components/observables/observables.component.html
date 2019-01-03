@@ -1,7 +1,8 @@
 <div class="container">
     <div *ngFor="let u of users">
         <strong>Pseudo : </strong>{{u.pseudo}}<br>
-        <strong>Niveau : </strong>{{u.level}}
+        <strong>Niveau : </strong>{{u.level}}<br>
+        <p class="font-weight-bold">Badges : </p>{{u.badges | json}}
         <button class="btn btn-outline-secondary mt-1 ml-1" (click)="changeURLtoShow(u.id)">Afficher</button>
     </div>
 </div>

@@ -23,19 +23,19 @@ export class Question {
         this._question = value;
     }
 
-    get badgeID(): string {
+    get badgeID(): number {
         return this._badgeID;
     }
 
-    set badgeID(value: string) {
+    set badgeID(value: number) {
         this._badgeID = value;
     }
 
-    get reponseID(): [] {
+    get reponseID(): number {
         return this._reponseID;
     }
 
-    set reponseID(value: []) {
+    set reponseID(value: number) {
         this._reponseID = value;
     }
 

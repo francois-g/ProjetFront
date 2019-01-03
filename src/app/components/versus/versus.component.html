@@ -4,11 +4,10 @@
 <h2 class="text-center">
     Choisissez les badges sur lesquels vous souhaitez jouer !
 </h2>
-<div class="text-center">
-    <input type="checkbox" value="1" #inputElem1>Premier badge<br>
-    <input type="checkbox" [checked]="isSelected(badge.name)" value="badge.idB">{{badge.name}}<br>
-    <input type="checkbox" value="3">Troisième badge<br>
+<div class="text-center custom-control custom-checkbox" *ngFor="let b of badges">
+    <label class="custom-control-label">{{b.name}} </label>
+    <input type="checkbox" class="custom-control-input" value={{b.id}}><br>
 </div>
 <div class="text-center mt-3">
-    <button type="button" class="btn btn-success " (click)="printFirstAsk()">Commencez !</button>
+    <button type="button" class="btn btn-success" (click)="printFirstAsk()">Commencez !</button>
 </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {Badge} from '../observables/models/badge';
+import {BadgeApiService} from './services/badge-api.service';
 
 @Component({
   selector: 'app-versus',
@@ -9,6 +12,8 @@ export class VersusComponent implements OnInit {
 
     private _question: string;
     private _answer: number;
+    private _badges$: Observable<Badge[]>;
+    private _badges: Badge[];
 
     get question(): string {
         return this._question;
@@ -26,9 +31,35 @@ export class VersusComponent implements OnInit {
         this._answer = value;
     }
 
-    constructor() { }
+    get badges$(): Observable<Badge[]> {
+        return this._badges$;
+    }
+
+    set badges$(value: Observable<Badge[]>) {
+        this._badges$ = value;
+    }
+
+    get badges(): Badge[] {
+        return this._badges;
+    }
+
+    set badges(value: Badge[]) {
+        this._badges = value;
+    }
+
+    constructor(private service: BadgeApiService) { }
 
     ngOnInit() {
+        this.badges$ = this.service.getAll();
+        this.badges$.subscribe (
+            b => {
+                console.log(b);
+                this.badges = b;
+            },
+            (err) => {
+                console.log('erreur' + err);
+            }
+        );
     }
 
     isSelected(element: string): boolean {
