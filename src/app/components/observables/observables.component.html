@@ -1,3 +1,6 @@
-<p>
-  observables works!
-</p>
+<div class="container">
+    <div *ngFor="let u of users">
+        {{u.pseudo}}
+        <button class="btn btn-outline-secondary mt-1 ml-1" (click)="changeURLtoShow(u.id)">Afficher</button>
+    </div>
+</div>

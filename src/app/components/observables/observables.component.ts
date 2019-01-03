@@ -57,7 +57,7 @@ export class ObservablesComponent implements OnInit {
                 console.log(u);
                 this.userOne = u;
             },
-            'error'
+            (err) => console.log(err)
         )
     }
 

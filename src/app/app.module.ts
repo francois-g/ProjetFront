@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { VersusComponent } from './components/versus/versus.component';
 import { ObservablesComponent } from './components/observables/observables.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { ObservablesComponent } from './components/observables/observables.compo
     imports: [
         BrowserModule,
         AppRoutingModule,
-        AngularFontAwesomeModule
+        AngularFontAwesomeModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
