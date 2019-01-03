@@ -1,0 +1,14 @@
+<h1 class="bg-info rounded w-50 m-auto text-center">
+    Bienvenue sur le mode versus
+</h1>
+<h2 class="text-center">
+    Choisissez les badges sur lesquels vous souhaitez jouer !
+</h2>
+<div class="text-center">
+    <input type="checkbox" value="1" #inputElem1>Premier badge<br>
+    <input type="checkbox" [checked]="isSelected(badge.name)" value="badge.idB">{{badge.name}}<br>
+    <input type="checkbox" value="3">Troisième badge<br>
+</div>
+<div class="text-center mt-3">
+    <button type="button" class="btn btn-success " (click)="printFirstAsk()">Commencez !</button>
+</div>
