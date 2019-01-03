@@ -19,4 +19,8 @@ export class UserApiService {
     getAll(): Observable<User[]> {
         return this._httpClient.get<User[]>(this.url);
     }
+
+    getOne(value: number): Observable<User[]> {
+        return this._httpClient.get<User[]>(this.url + '/' + value);
+    }
 }

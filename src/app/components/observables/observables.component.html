@@ -1,6 +1,7 @@
 <div class="container">
     <div *ngFor="let u of users">
-        {{u.pseudo}}
+        <strong>Pseudo : </strong>{{u.pseudo}}<br>
+        <strong>Niveau : </strong>{{u.level}}
         <button class="btn btn-outline-secondary mt-1 ml-1" (click)="changeURLtoShow(u.id)">Afficher</button>
     </div>
 </div>

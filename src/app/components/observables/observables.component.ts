@@ -55,10 +55,20 @@ export class ObservablesComponent implements OnInit {
         this.users$.subscribe (
             u => {
                 console.log(u);
-                this.userOne = u;
+                this.users = u;
             },
             (err) => console.log(err)
-        )
+        );
+    }
+
+    changeURLtoShow(value: number) {
+        this.users$ = this.service.getOne(value);
+        this.users$.subscribe(
+            u => {
+                console.log(u);
+                this.userOne = u;
+            }
+        );
     }
 
 }

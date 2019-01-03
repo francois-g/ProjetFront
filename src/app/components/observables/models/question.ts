@@ -1,42 +1,42 @@
 export class Question {
 
     constructor(
-        private _idQuestion: number,
-        private _titleQuestion: string,
-        private _correct: string,
-        private _incorrect: []
+        private _id: number,
+        private _question: string,
+        private _badgeID: number,
+        private _reponseID: number
     ) {}
 
-    get idQuestion(): number {
-        return this._idQuestion;
+    get id(): number {
+        return this._id;
     }
 
-    set idQuestion(value: number) {
-        this._idQuestion = value;
+    set id(value: number) {
+        this._id = value;
     }
 
-    get titleQuestion(): string {
-        return this._titleQuestion;
+    get question(): string {
+        return this._question;
     }
 
-    set titleQuestion(value: string) {
-        this._titleQuestion = value;
+    set question(value: string) {
+        this._question = value;
     }
 
-    get correct(): string {
-        return this._correct;
+    get badgeID(): string {
+        return this._badgeID;
     }
 
-    set correct(value: string) {
-        this._correct = value;
+    set badgeID(value: string) {
+        this._badgeID = value;
     }
 
-    get incorrect(): [] {
-        return this._incorrect;
+    get reponseID(): [] {
+        return this._reponseID;
     }
 
-    set incorrect(value: []) {
-        this._incorrect = value;
+    set reponseID(value: []) {
+        this._reponseID = value;
     }
 
 }
