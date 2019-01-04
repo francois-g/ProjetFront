@@ -4,10 +4,14 @@
 <h2 class="text-center">
     Choisissez les badges sur lesquels vous souhaitez jouer !
 </h2>
-<div class="text-center custom-control custom-checkbox" *ngFor="let b of badges">
-    <label class="custom-control-label">{{b.name}} </label>
-    <input type="checkbox" class="custom-control-input" value={{b.id}}><br>
-</div>
+<form [formGroup]="myBadgeForm" [ngSubmit]="selectedBadges(myBadgeForm)">
+    <div class="text-center custom-control custom-checkbox" *ngFor="let b of badges">
+        <label class="">{{b.name}} </label>
+        <input type="checkbox" class="" value={{b.id}} [formControl]="myBadgeForm.controls['id' + b.id]"><br>
+    </div>
+    <input type="submit" class="btn btn-success" value="Commencez !">
+</form>
+
 <div class="text-center mt-3">
-    <button type="button" class="btn btn-success" (click)="printFirstAsk()">Commencez !</button>
+
 </div>

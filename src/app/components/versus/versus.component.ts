@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Badge} from '../observables/models/badge';
 import {BadgeApiService} from './services/badge-api.service';
+import {Question} from '../observables/models/question';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {forEachComment} from 'tslint';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-versus',
@@ -10,17 +14,26 @@ import {BadgeApiService} from './services/badge-api.service';
 })
 export class VersusComponent implements OnInit {
 
-    private _question: string;
-    private _answer: number;
+    private _questions$: Observable<Question[]>;
+    private _questions: Question[];
     private _badges$: Observable<Badge[]>;
     private _badges: Badge[];
+    private _myBadgeForm: FormGroup;
 
-    get question(): string {
-        return this._question;
+    get questions$(): Observable<Question[]> {
+        return this._questions$;
     }
 
-    set question(value: string) {
-        this._question = value;
+    set questions$(value: Observable<Question[]>) {
+        this._questions$ = value;
+    }
+
+    get questions(): Question[] {
+        return this._questions;
+    }
+
+    set questions(value: Question[]) {
+        this._questions = value;
     }
 
     get answer(): number {
@@ -47,7 +60,15 @@ export class VersusComponent implements OnInit {
         this._badges = value;
     }
 
-    constructor(private service: BadgeApiService) { }
+    get myBadgeForm(): FormGroup {
+        return this._myBadgeForm;
+    }
+
+    set myBadgeForm(value: FormGroup) {
+        this._myBadgeForm = value;
+    }
+
+    constructor(private service: BadgeApiService, private builder: FormBuilder) {}
 
     ngOnInit() {
         this.badges$ = this.service.getAll();
@@ -55,6 +76,16 @@ export class VersusComponent implements OnInit {
             b => {
                 console.log(b);
                 this.badges = b;
+                b.forEach(function(b){
+                    let objectBadge: object = {
+                        id: b.id,
+                        name: b.name,
+                    };
+                    this.myBadgeForm = this.builder.group({
+                        'id': [b.id, []],
+                        'name': [b.name, []]
+                    });
+                });
             },
             (err) => {
                 console.log('erreur' + err);
@@ -62,17 +93,17 @@ export class VersusComponent implements OnInit {
         );
     }
 
-    isSelected(element: string): boolean {
-        if (element) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    printFirstAsk() {
-        this.question = 'Que voulez-vous manger ?';
-        alert(this.question);
+    selectedBadges(form: FormGroup) {
+        this.questions$ = this.service.getQuestionByBadge(dude);
+        this.questions$.subscribe (
+            q => {
+                console.log(q);
+                this.questions = q;
+            },
+            (err) => {
+                console.log('Erreur vilaine' + err);
+            }
+        );
     }
 }
 
