@@ -80,7 +80,7 @@ export class VersusComponent implements OnInit {
                 b.forEach(function (b) {
                     // objectBadge['id' + b.id] = [false, []];
                     objectBadge[b.id] = [false, []];
-                    console.log(objectBadge);
+                    // console.log(objectBadge);
                 });
                 this.myBadgeForm = this.builder.group(objectBadge);
             },
@@ -92,7 +92,7 @@ export class VersusComponent implements OnInit {
     }
 
     selectedBadges() {
-        console.log(this.myBadgeForm.value);
+        // console.log(this.myBadgeForm.value);
         let tabB: Array<number> = [];
         for (let v in this.myBadgeForm.value) {
             if (this.myBadgeForm.value[v]) {

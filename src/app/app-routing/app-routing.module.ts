@@ -5,6 +5,7 @@ import {Route, RouterModule} from '@angular/router';
 import {VersusComponent} from '../components/versus/versus.component';
 import {Observable} from 'rxjs';
 import {ObservablesComponent} from '../components/observables/observables.component';
+import {RankingComponent} from '../components/ranking/ranking.component';
 
 const routes: Route[] = [
     {
@@ -18,6 +19,10 @@ const routes: Route[] = [
     {
         path: 'users',
         component: ObservablesComponent
+    },
+    {
+        path: 'ranking',
+        component: RankingComponent
     }
     // {
     //     path: 'params/:id',

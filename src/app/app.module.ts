@@ -9,13 +9,17 @@ import { VersusComponent } from './components/versus/versus.component';
 import { ObservablesComponent } from './components/observables/observables.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { QuestionsComponent } from './components/questions/questions.component';
+import {RankingComponent} from './components/ranking/ranking.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         VersusComponent,
-        ObservablesComponent
+        ObservablesComponent,
+        QuestionsComponent,
+        RankingComponent
     ],
     imports: [
         BrowserModule,

@@ -15,6 +15,14 @@ export class Question {
         this._id = value;
     }
 
+    get intitule(): string {
+        return this._intitule;
+    }
+
+    set intitule(value: string) {
+        this._intitule = value;
+    }
+
     get badgeID(): number {
         return this._badgeID;
     }

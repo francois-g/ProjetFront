@@ -1,0 +1,11 @@
+<div class="container">
+    <div id="question">{{questionIntitule}}</div>
+    <div id="reponses">
+        <div class="row d-flex justify-content-center mt-5">
+            <button type="button" class="btn btn-warning col-lg-4 mr-2 response" (click)="valider()" *ngFor="let r of [responses[0], responses[1]]">{{r}}</button>
+        </div>
+        <div class="row d-flex justify-content-center mt-2">
+            <button type="button" class="btn btn-warning col-lg-4 mr-2 response" (click)="valider()" *ngFor="let r of [responses[2], responses[3]]">{{r}}</button>
+        </div>
+    </div>
+</div>

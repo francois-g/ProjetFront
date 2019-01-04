@@ -1,0 +1,17 @@
+<h2>Classement mondial</h2>
+<table class="table table-primary" *ngIf="users">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Pseudo</th>
+    <th>Points</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let player of users; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{player.pseudo}}</td>
+    <td>{{player.level}}</td>
+  </tr>
+  </tbody>
+</table>
