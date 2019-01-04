@@ -8,6 +8,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { VersusComponent } from './components/versus/versus.component';
 import { ObservablesComponent } from './components/observables/observables.component';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
         BrowserModule,
         AppRoutingModule,
         AngularFontAwesomeModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

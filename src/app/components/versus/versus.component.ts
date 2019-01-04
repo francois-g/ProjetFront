@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Badge} from '../observables/models/badge';
 import {BadgeApiService} from './services/badge-api.service';
 import {Question} from '../observables/models/question';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {forEachComment} from 'tslint';
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
-  selector: 'app-versus',
-  templateUrl: './versus.component.html',
-  styleUrls: ['./versus.component.css']
+    selector: 'app-versus',
+    templateUrl: './versus.component.html',
+    styleUrls: ['./versus.component.css']
 })
 export class VersusComponent implements OnInit {
 
     private _questions$: Observable<Question[]>;
     private _questions: Question[];
+    private _validate: boolean;
     private _badges$: Observable<Badge[]>;
     private _badges: Badge[];
     private _myBadgeForm: FormGroup;
@@ -36,12 +35,12 @@ export class VersusComponent implements OnInit {
         this._questions = value;
     }
 
-    get answer(): number {
-        return this._answer;
+    get validate(): boolean {
+        return this._validate;
     }
 
-    set answer(value: number) {
-        this._answer = value;
+    set validate(value: boolean) {
+        this._validate = value;
     }
 
     get badges$(): Observable<Badge[]> {
@@ -68,34 +67,44 @@ export class VersusComponent implements OnInit {
         this._myBadgeForm = value;
     }
 
-    constructor(private service: BadgeApiService, private builder: FormBuilder) {}
+    constructor(private service: BadgeApiService, private builder: FormBuilder) {
+    }
 
     ngOnInit() {
         this.badges$ = this.service.getAll();
-        this.badges$.subscribe (
+        this.badges$.subscribe(
             b => {
                 console.log(b);
                 this.badges = b;
-                b.forEach(function(b){
-                    let objectBadge: object = {
-                        id: b.id,
-                        name: b.name,
-                    };
-                    this.myBadgeForm = this.builder.group({
-                        'id': [b.id, []],
-                        'name': [b.name, []]
-                    });
+                let objectBadge: any = {};
+                b.forEach(function (b) {
+                    // objectBadge['id' + b.id] = [false, []];
+                    objectBadge[b.id] = [false, []];
+                    console.log(objectBadge);
                 });
+                this.myBadgeForm = this.builder.group(objectBadge);
             },
             (err) => {
                 console.log('erreur' + err);
             }
         );
+        this.validate = false;
     }
 
-    selectedBadges(form: FormGroup) {
-        this.questions$ = this.service.getQuestionByBadge(dude);
-        this.questions$.subscribe (
+    selectedBadges() {
+        console.log(this.myBadgeForm.value);
+        let tabB: Array<number> = [];
+        for (let v in this.myBadgeForm.value) {
+            if (this.myBadgeForm.value[v]) {
+                console.log(v);
+                tabB.push(parseInt(v));
+            }
+        }
+        console.log(tabB);
+
+        this.questions$ = this.service.getQuestionByBadge(tabB);
+        // this.questions$ = this.service.getQuestionByBadge(this.myBadgeForm.controls[]);
+        this.questions$.subscribe(
             q => {
                 console.log(q);
                 this.questions = q;
@@ -104,6 +113,7 @@ export class VersusComponent implements OnInit {
                 console.log('Erreur vilaine' + err);
             }
         );
+        this.validate = true;
     }
 }
 

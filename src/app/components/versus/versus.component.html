@@ -1,16 +1,23 @@
-<h1 class="bg-info rounded w-50 m-auto text-center">
+<div class="container" *ngIf="validate==false">
+    <h1 class="bg-info rounded w-50 m-auto text-center">
     Bienvenue sur le mode versus
-</h1>
-<h2 class="text-center">
+    </h1>
+    <h2 class="text-center">
     Choisissez les badges sur lesquels vous souhaitez jouer !
-</h2>
-<form [formGroup]="myBadgeForm" [ngSubmit]="selectedBadges(myBadgeForm)">
-    <div class="text-center custom-control custom-checkbox" *ngFor="let b of badges">
-        <label class="">{{b.name}} </label>
-        <input type="checkbox" class="" value={{b.id}} [formControl]="myBadgeForm.controls['id' + b.id]"><br>
-    </div>
-    <input type="submit" class="btn btn-success" value="Commencez !">
-</form>
+    </h2>
+    <form *ngIf="myBadgeForm" [formGroup]="myBadgeForm" (ngSubmit)="selectedBadges()">
+        <div class="text-center custom-control custom-checkbox" *ngFor="let b of badges">
+            <label class="">{{b.name}} </label>
+            <!--<input type="checkbox" class="" id={{b.id}} [formControl]="myBadgeForm.controls['id'+b.id]"><br>-->
+            <input type="checkbox" class="" id={{b.id}} [formControl]="myBadgeForm.controls[b.id]"><br>
+        </div>
+        <input type="submit" class="btn btn-success" value="Commencez !">
+    </form>
+</div>
+
+<div class="container" *ngIf="validate==true">
+    bouh
+</div>
 
 <div class="text-center mt-3">
 

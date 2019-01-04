@@ -2,7 +2,7 @@ export class Question {
 
     constructor(
         private _id: number,
-        private _question: string,
+        private _intitule: string,
         private _badgeID: number,
         private _reponseID: number
     ) {}
