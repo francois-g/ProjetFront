@@ -8,7 +8,7 @@ import {User} from '../models/user';
 })
 export class UserApiService {
 
-    private _url: string = 'http://versus.local/users';
+    private _url = 'http://versus.local/users';
 
     get url(): string {
         return this._url;
